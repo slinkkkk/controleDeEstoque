@@ -1,0 +1,119 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: MAURÍCIO
+ * Date: 10/12/2014
+ * Time: 16:30
+ */
+
+$con = new Controller();
+$sessionHelper = new SessionHelper();
+$redirectorHelper = new RedirectorHelper();
+
+$user  = $sessionHelper->selectSession("userData");
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <?php $con->link(TEMANEON."assets/images/favicon.png")?>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LS Admin Painel" />
+    <meta name="author" content="Maurício Falbo" />
+
+    <title><?php echo $con->title?></title>
+
+    <?php
+        $con->stylesheet( TEMANEON . "assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css");
+        $con->stylesheet( TEMANEON . "assets/css/font-icons/entypo/css/entypo.css");
+        $con->stylesheet( "http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic");
+        $con->stylesheet( TEMANEON . "assets/css/bootstrap.css");
+        $con->stylesheet( TEMANEON . "assets/css/neon-core.css");
+        $con->stylesheet( TEMANEON . "assets/css/neon-theme.css");
+        $con->stylesheet( TEMANEON . "assets/css/neon-forms.css");
+        $con->stylesheet( TEMANEON . "assets/css/custom.css");
+
+        $con->jsScript( TEMANEON . "assets/js/jquery-1.11.0.min.js");
+    ?>
+
+    <!--[if lt IE 9]> <?php $con->jsScript( TEMANEON . "assets/js/ie8-responsive-file-warning.js"); ?> <![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <?php $con->jsScript( "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" ); ?>
+    <?php $con->jsScript( "https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" ); ?>
+    <![endif]-->
+</head>
+<body class="page-body" data-url="">
+    <div class="page-container">
+
+        <div class="sidebar-menu">
+            <header class="logo-env">
+                <!-- logo -->
+                <div class="logo">
+                    <a href="<?php $redirectorHelper->getLink("index","index",true); ?>">
+                        <?php $con->image(TEMANEON."assets/images/logo.png",120)?>
+                    </a>
+                </div>
+                <!-- logo collapse icon -->
+                <div class="sidebar-collapse">
+                    <a href="#" class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="sidebar-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+            </header>
+            <ul id="main-menu" class="">
+                <li>
+                    <a href="<?php $redirectorHelper->getLink("index","index",true); ?>">
+                        <i class="entypo-list"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php $redirectorHelper->getLink("cadastrar","index",true); ?>">
+                        <i class="entypo-list-add"></i>
+                        <span>Cadastrar Equipamento</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <?php
+                require_once( $file )
+            ?>
+
+            <footer class="main">
+                &copy; <?php echo date("Y");?> <strong>Studio Prime</strong>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+<?php
+    $con->jsScript( TEMANEON . "assets/js/gsap/main-gsap.js");
+    $con->jsScript( TEMANEON . "assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js");
+    $con->jsScript( TEMANEON . "assets/js/bootstrap.js");
+    $con->jsScript( TEMANEON . "assets/js/joinable.js");
+    $con->jsScript( TEMANEON . "assets/js/fileinput.js");
+    $con->jsScript( TEMANEON . "assets/js/jcrop/jquery.Jcrop.min.js");
+    $con->jsScript( TEMANEON . "assets/js/resizeable.js");
+    $con->jsScript( TEMANEON . "assets/js/neon-api.js");
+    $con->jsScript( TEMANEON . "assets/js/jquery.validate.min.js");
+    $con->jsScript( TEMANEON . "assets/js/neon-login.js");
+    $con->jsScript( TEMANEON . "assets/js/neon-custom.js");
+
+?>
+</body>
+</html>
