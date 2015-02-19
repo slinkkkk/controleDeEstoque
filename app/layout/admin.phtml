@@ -73,16 +73,50 @@ $user  = $sessionHelper->selectSession("userData");
             </header>
             <ul id="main-menu" class="">
                 <li>
-                    <a href="<?php $redirectorHelper->getLink("index","index",true); ?>">
+                    <a href="<?php $redirectorHelper->getLink("lista","menu",true); ?>">
                         <i class="entypo-list"></i>
                         <span>Inicio</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php $redirectorHelper->getLink("cadastrar","index",true); ?>">
-                        <i class="entypo-list-add"></i>
-                        <span>Cadastrar Equipamento</span>
+                    <a href="#">
+                        <i class="entypo-camera"></i>
+                        <span>Equipamento</span>
                     </a>
+                    <ul>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("equipamento","index",true); ?>">
+                                <i class="entypo-plus-circled"></i>
+                                <span>Cadastrar Equipamento</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("equipamento","menu",true); ?>">
+                                <i class="entypo-menu"></i>
+                                <span>Menu Equipamento</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="entypo-layout"></i>
+                        <span>Lista</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("lista","index",true); ?>">
+                                <i class="entypo-plus-circled"></i>
+                                <span>Cadastrar Lista</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("lista","menu",true); ?>">
+                                <i class="entypo-menu"></i>
+                                <span>Menu Lista</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

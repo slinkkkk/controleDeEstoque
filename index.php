@@ -18,10 +18,12 @@
 
     function __autoload( $file ){
         if ( file_exists(MODELS . $file . '.php') )
-            //die(MODELS  . $file. '.php');
+            //die($_SERVER['SERVER_NAME'] . '/' . MODELS  . $file. '.php');
             require_once( MODELS . $file . '.php' );
+
         else if ( file_exists(HELPERS . $file . '.php') )
             require_once( HELPERS . $file . '.php' );
+
         else
             die("Model ou Helper nao encontrado.");
     }

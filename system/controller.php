@@ -1,14 +1,12 @@
 <?php
 class Controller extends System{
 
-    public $title = "Studio Prime", $redirect, $titulo = "" ;
+    public $title = "Studio Prime", $redirect, $_col = array() , $_value = array();
 
 
-	protected function view( $nome ,$vars = null ){
-
-
+	protected function view( $nome ,$vars = null )
+    {
         $login = false;
-
 
         if(($this->_view == 'admin') and ($login == true))
         {
@@ -30,7 +28,6 @@ class Controller extends System{
         }
 
 		$file = $caminhoView .$nome. '.phtml';
-        //die($file);
 		if ( !file_exists($file) )
             die("Houve um erro. Layout não existe.");
 		if ( !file_exists($layout) )
@@ -45,6 +42,17 @@ class Controller extends System{
         $layout = sprintf("%s/login.phtml",LAYOUT);
         require_once( $layout );
     }
+
+    public function tabela()
+    {
+        $layout = sprintf("%s/tabela.phtml",LAYOUT);
+        require_once( $layout );
+    }
+
+
+
+
+
 
     public function stylesheet ( $caminho )
     {
@@ -73,7 +81,5 @@ class Controller extends System{
     public function init()
     {
         $this->redirect = new RedirectorHelper();
-
-
     }
 }

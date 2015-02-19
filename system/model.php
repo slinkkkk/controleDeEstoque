@@ -4,21 +4,13 @@ class Model
 {
     protected $_db;
     public $_tabela;
-    public $_host = "";
 
     public function  __construct()
     {
-        try
-        {
-            $host = "";
-            $bancoDeDados = "";
-            $user = "";
-            $senha = "";
-
-            $this->_db = new PDO('mysql:host='.$host.';dbname='.$bancoDeDados, $user, $senha, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-
+        try {
+            $this->_db = new PDO('mysql:host=mysql17.studioprime.com.br;dbname=studioprime14', 'studioprime14', 'prime159357', array(1002 => 'SET NAMES utf8'));
         } catch (Exception $e) {
-            echo "Problemas com o banco de dados.";
+            echo $e;
             exit;
         }
     }
@@ -29,6 +21,7 @@ class Model
         $valores = implode(", ", array_values($dados));
 
         $sql = " INSERT INTO `{$this->_tabela}` ({$campos}) VALUES ({$valores}) ";
+
         return $this->_db->query($sql);
     }
 
@@ -39,6 +32,8 @@ class Model
         $offset = ($offset != null ? "OFFSET {$offset}" : "");
         $orderby = ($orderby != null ? "ORDER BY {$orderby}" : "");
         $sql = " SELECT * FROM `{$this->_tabela}` {$where} {$orderby} {$limit} {$offset} ";
+        //var_dump($sql);exit;
+
         $q = $this->_db->query($sql);
         $q->setFetchMode(PDO::FETCH_ASSOC);
         return $q->fetchAll();

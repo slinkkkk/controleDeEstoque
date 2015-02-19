@@ -1,0 +1,27 @@
+<table class="table table-bordered datatable" id="table-1">
+    <thead>
+        <tr>
+            <?php foreach($this->_col as $row): ?>
+                <th><?php echo ucfirst($row); ?></th>
+            <?php endforeach; ?>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach($this->_value as $value): ?>
+            <tr>
+                <?php  foreach($this->_col as $coluna): ?>
+                    <td><?php echo $value[$coluna]; ?></td>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <?php foreach($this->_col as $row): ?>
+                <th><?php echo ucfirst($row); ?></th>
+            <?php endforeach; ?>
+        </tr>
+    </tfoot>
+</table>

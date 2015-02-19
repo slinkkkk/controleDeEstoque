@@ -2,7 +2,7 @@
 
 Class Index extends Controller
 {
-    public $upar, $redirect;
+    public  $redirect;
 
     public function index_action()
     {
