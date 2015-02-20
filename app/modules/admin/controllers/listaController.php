@@ -33,10 +33,12 @@ Class Lista extends Controller
             $codigo = $_POST['code'];
             $equipamentoUnico =  $equip->listaEquipamento(sprintf("codigo = %s",$codigo),1);
 
-            //if (sizeof($equipamentoUnico) > 0)
-                print_r($equipamentoUnico);
-            //else
-              //  echo 1;
+            if (sizeof($equipamentoUnico) > 0) {
+                echo $equipamentoUnico[0]["nome"];
+                echo $equipamentoUnico[0]["codigo"];
+            }
+            else
+                echo 1;
 
         }
         else{ echo 1; }

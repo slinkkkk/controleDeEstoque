@@ -32,7 +32,7 @@ class Model
         $offset = ($offset != null ? "OFFSET {$offset}" : "");
         $orderby = ($orderby != null ? "ORDER BY {$orderby}" : "");
         $sql = " SELECT * FROM `{$this->_tabela}` {$where} {$orderby} {$limit} {$offset} ";
-        var_dump($sql);exit;
+        //var_dump($sql);exit;
 
         $q = $this->_db->query($sql);
         $q->setFetchMode(PDO::FETCH_ASSOC);
