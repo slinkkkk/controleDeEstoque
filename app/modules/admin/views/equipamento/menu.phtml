@@ -3,14 +3,29 @@
 
 <?php $this->tabela(); ?>
 
-<button type="button" class="btn btn-black" id="btn-teste">TESTE</button>
-
 <script>
     $(document).ready(function(){
-        $("#btn-teste").click( function(event){
 
 
-        })
+        $("#btn-teste").click(function(){ sendform() });
 
+        function sendform()
+        {
+            fnome = $('#nome').val();
+            fmail = $('#mail').val();
+
+            $.post($("#f").attr("action"),{nome: fnome, mail: fmail},
+            function(data)
+            {
+                if(data == 1)
+                {
+                    $("#field-teste").html("Preencha todos os campos!");
+                }
+                else
+                {
+                    $("#field-teste").html(data);
+                }
+            });
+        }
     });
 </script>

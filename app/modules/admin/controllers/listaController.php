@@ -23,4 +23,22 @@ Class Lista extends Controller
         $redirect = new RedirectorHelper();
         $redirect->goToAction("index",true);
     }
+
+    public function verificarItem()
+    {
+
+        $equip = new EquipamentosModel();
+        if(trim($_POST['code']) != "" )
+        {
+            $codigo = $_POST['code'];
+            $equipamentoUnico =  $equip->listaEquipamento(sprintf("codigo = %s",$codigo),1);
+
+            //if (sizeof($equipamentoUnico) > 0)
+                print_r($equipamentoUnico);
+            //else
+              //  echo 1;
+
+        }
+        else{ echo 1; }
+    }
 }

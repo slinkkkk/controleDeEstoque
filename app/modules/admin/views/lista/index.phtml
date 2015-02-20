@@ -1,6 +1,7 @@
 <h2>Criar Lista</h2>
 <hr/>
-<form method="post" action="<?php $redirectorHelper->getLink("equipamento", "cadastrar", true); ?>">
+<form method="post" action="<?php $redirectorHelper->getLink("lista", "cadastrar", true); ?>">
+    <input type="hidden" id="field-url" value="<?php $redirectorHelper->getLink("lista", "verificarItem", true); ?>" >
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="tocify-content">
@@ -52,15 +53,25 @@
             {
                 if (barcode.length == 13) {
 
+                    $.post($("#field-url").attr("value"),{code: barcode},
+                    function(data)
+                    {
+                        if(data == 1)
+                        {
+                            $("#field-codigo").val("Item não encontrado!");
+                        }
+                        else
+                        {
+                            $("#field-codigo").val(data);
+                        }
+                    });
 
-
-
-                    $("#field-codigo").append(barcode);
+                    //$("#field-codigo").append(barcode);
 
                     barcode = "";
                 }
                 else if (barcode.length == 8) {
-                    $("#field-codigo").val(barcode);
+                    //$("#field-codigo").val("");
                     barcode = "";
                 }
             }

@@ -50,10 +50,6 @@ class Controller extends System{
     }
 
 
-
-
-
-
     public function stylesheet ( $caminho )
     {
         $caminhoFinal =  "<link rel='stylesheet' href='$caminho'>";
