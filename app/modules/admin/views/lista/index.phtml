@@ -29,13 +29,23 @@
                                               placeholder="Observações"></textarea>
 
                                     <br/>
-                                    <label for="field-nome" class="control-label">Itens</label>
-                                    <textarea name="obs" class="form-control" id="field-codigo" rows="10" disabled style="font-size: 18px; color: #000;"></textarea>
+                                    <?php /*<label for="field-nome" class="control-label">Itens</label>
+                                    <textarea name="obs" class="form-control" id="field-codigo" rows="10" disabled style="font-size: 18px; color: #000;"></textarea>*/?>
+                                    <table class="table table-hover" id="table-codigo">
+                                        <thead>
+                                            <tr>
+                                                <th>Cógido</th>
+                                                <th>Nome</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <br/>
-                                <button type="submit" class="btn btn-green btn-icon">Cadastrar <i
-                                        class="entypo-check"></i></button>
+                                <button type="submit" class="btn btn-green btn-icon">Cadastrar <i class="entypo-check"></i></button>
                             </div>
                         </div>
                     </div>
@@ -53,18 +63,28 @@
             {
                 if (barcode.length == 13) {
 
-                    $.post($("#field-url").attr("value"),{code: barcode},
-                    function(data)
-                    {
-                        if(data == 1)
+                    $.post(
+                        $("#field-url").attr("value"),{code: barcode},
+                        function(data)
                         {
-                            $("#field-codigo").val("Item não encontrado!");
-                        }
-                        else
-                        {
-                            $("#field-codigo").val(data);
-                        }
-                    });
+                            if(data == 1)
+                            {
+                                $("#field-codigo").val("Item não encontrado!");
+                            }
+                            else
+                            {
+
+                                console.log(data);
+
+                                $("#table-codigo tbody").append(
+                                    "<tr>"+
+                                        "<td>"+ data +"</td>"+
+                                        "<td>"+ +"</td>"+
+                                        "<td>TESTE</td>"+
+                                    "</tr>"
+                                );
+                            }
+                        });
 
                     //$("#field-codigo").append(barcode);
 

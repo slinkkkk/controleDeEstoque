@@ -26,7 +26,6 @@ Class Lista extends Controller
 
     public function verificarItem()
     {
-
         $equip = new EquipamentosModel();
         if(trim($_POST['code']) != "" )
         {
@@ -34,8 +33,7 @@ Class Lista extends Controller
             $equipamentoUnico =  $equip->listaEquipamento(sprintf("codigo = %s",$codigo),1);
 
             if (sizeof($equipamentoUnico) > 0) {
-                echo $equipamentoUnico[0]["nome"];
-                echo $equipamentoUnico[0]["codigo"];
+                echo json_encode($equipamentoUnico);
             }
             else
                 echo 1;
