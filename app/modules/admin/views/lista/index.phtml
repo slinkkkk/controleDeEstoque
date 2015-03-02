@@ -1,6 +1,23 @@
 <h2>Criar Lista</h2>
 <hr/>
-<form method="post" action="<?php $redirectorHelper->getLink("lista", "cadastrar", true); ?>">
+<form method="post" action="<?php $redirectorHelper->getLink("lista", "cadastrar", true); ?>" id="field-form">
+
+    <div class="panel panel-invert panel-shadow form-actions">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6 text-right">
+
+                    <a href="<?php $redirectorHelper->getLink("lista","menu",true); ?>" class="btn btn-default btn-icon btn-lg icon-left">Voltar<i class="entypo-left-open"></i></a>
+                    <button type="button" class="btn btn-green btn-icon btn-lg" id="field-botao">Salvar<i class="entypo-check"></i></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <input type="hidden" id="field-url" value="<?php $redirectorHelper->getLink("lista", "verificarItem", true); ?>" >
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
@@ -16,36 +33,41 @@
                             <div class="col-md-12 tooltip-primary">
                                 <div class="col-md-12">
                                     <br/>
-                                    <label for="field-nome" class="control-label">Nome</label>
-                                    <input type="text" name="nome" class="form-control" id="field-nome"
-                                           placeholder="Nome" data-validate="required" value="">
+                                    <label for="field-cliente" class="control-label">Cliente</label>
+                                    <?php /*
+                                    <input type="text" name="cliente" class="form-control" id="field-cliente"
+                                           placeholder="Cliente" data-validate="required" value="">
+                                    */?>
+
+                                    <select name="cliente" class="selectboxit" id="field-cliente">
+                                        <option value="-1">Selecione um cliente...</option>
+                                        <?php foreach($view_clientes as $cliente): ?>
+                                            <option value="<?php echo $cliente["id"] ?>" data-iconurl="<?php //echo $_SERVER["SERVER_NAME"].TEMANEON."assets/".$cliente["urlLogo"]?>"><?php echo $cliente["nome"]?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                     <br/>
-                                    <label for="field-nome" class="control-label">Cliente</label>
-                                    <input type="text" name="marca" class="form-control" id="field-marca"
-                                           placeholder="Marca" data-validate="required" value="">
-                                    <br/>
-                                    <label for="field-nome" class="control-label">Observações</label>
-                                    <textarea name="obs" class="form-control" id="field-obs"
-                                              placeholder="Observações"></textarea>
+                                    <label for="field-responsavel" class="control-label">Responsável</label>
+                                    <select name="responsavel" class="selectboxit" id="field-responsavel">
+                                        <option value="-1">Selecione um responsável...</option>
+                                        <?php foreach($view_usuario as $user): ?>
+                                            <option value="<?php echo $user["id"] ?>"> <?php echo $user["nome"] ." ". $user["sobrenome"]?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+
 
                                     <br/>
-                                    <?php /*<label for="field-nome" class="control-label">Itens</label>
-                                    <textarea name="obs" class="form-control" id="field-codigo" rows="10" disabled style="font-size: 18px; color: #000;"></textarea>*/?>
                                     <table class="table table-hover" id="table-codigo">
                                         <thead>
                                             <tr>
-                                                <th>Cógido</th>
+                                                <th width='150px'>Cógido</th>
                                                 <th>Nome</th>
-                                                <th>Ações</th>
+                                                <th width='100px'>Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         </tbody>
                                     </table>
                                 </div>
-
-                                <br/>
-                                <button type="submit" class="btn btn-green btn-icon">Cadastrar <i class="entypo-check"></i></button>
                             </div>
                         </div>
                     </div>
@@ -54,6 +76,8 @@
         </div>
     </div>
 </form>
+
+
 <script>
     $(document).ready(function () {
         var barcode = "";
@@ -63,35 +87,69 @@
             {
                 if (barcode.length == 13) {
 
-                    $.post(
-                        $("#field-url").attr("value"),{code: barcode},
-                        function(data)
-                        {
-                            if(data == 1)
-                            {
-                                $("#field-codigo").val("Item não encontrado!");
+                    var Codigos = new Array();
+
+                    $("input[name='itemCodigo[]']").each(function(){
+                        Codigos.push($(this).val());
+                    });
+
+                    resultado = jQuery.inArray(barcode,Codigos);
+                    if( resultado == -1 ) {
+                        $.post(
+                            $("#field-url").attr("value"), {code: barcode},
+                            function (data) {
+                                if (data == 1) {
+                                    $("#field-codigo").val("Item não encontrado!");
+                                }
+                                else {
+                                    var obj = JSON.parse(data);
+
+                                    $("#table-codigo tbody").append(
+                                        "<tr>" +
+                                        "<td width='150px'>" + obj[0].codigo + "</td>" +
+                                        "<td>" + obj[0].nome + "</td>" +
+                                        "<td width='100px'><button type='button' class='btn btn-red btn-icon btn-sm btnExcluir' > Remover <i class='entypo-cancel'> </button></td>" +
+                                        "<input type='hidden' name='itemCodigo[]' id='itemCodigo' value=" + obj[0].codigo + " >" +
+                                        "</tr>"
+                                    );
+                                    $(".btnExcluir").bind("click", Excluir);
+                                }
                             }
-                            else
-                            {
-
-                                console.log(data);
-
-                                $("#table-codigo tbody").append(
-                                    "<tr>"+
-                                        "<td>"+ data +"</td>"+
-                                        "<td>"+ +"</td>"+
-                                        "<td>TESTE</td>"+
-                                    "</tr>"
-                                );
-                            }
-                        });
-
-                    //$("#field-codigo").append(barcode);
-
+                        );
+                    }
                     barcode = "";
                 }
                 else if (barcode.length == 8) {
-                    //$("#field-codigo").val("");
+                    var Codigos = new Array();
+
+                    $("input[name='itemCodigo[]']").each(function(){
+                        Codigos.push($(this).val());
+                    });
+
+                    resultado = jQuery.inArray(barcode,Codigos);
+                    if( resultado == -1 ) {
+                        $.post(
+                            $("#field-url").attr("value"), {code: barcode},
+                            function (data) {
+                                if (data == 1) {
+                                    $("#field-codigo").val("Item não encontrado!");
+                                }
+                                else {
+                                    var obj = JSON.parse(data);
+
+                                    $("#table-codigo tbody").append(
+                                        "<tr>" +
+                                        "<td width='150px'>" + obj[0].codigo + "</td>" +
+                                        "<td>" + obj[0].nome + "</td>" +
+                                        "<td width='100px'><button type='button' class='btn btn-red btn-icon btn-sm btnExcluir' > Remover <i class='entypo-cancel'> </button></td>" +
+                                        "<input type='hidden' name='itemCodigo[]' id='itemCodigo' value=" + obj[0].codigo + " >" +
+                                        "</tr>"
+                                    );
+                                    $(".btnExcluir").bind("click", Excluir);
+                                }
+                            }
+                        );
+                    }
                     barcode = "";
                 }
             }
@@ -99,5 +157,33 @@
                 barcode = barcode + String.fromCharCode(code);
             }
         });
+
+        $("select").blur(function(){
+            if($(this).val() == -1)
+            {
+                $(this).css({"border" : "10px solid #F00"});
+            }
+        }).change();
+
+        $("#field-botao").click(function(){
+            var cont = 0;
+            $("#field-form select").each(function(){
+                if($(this).val() == -1)
+                {
+                    $(this).css({"border" : "1px solid #F00"});
+                    cont++;
+                }
+            });
+            if(cont == 0)
+            {
+                $("#field-form").submit();
+            }
+        });
+
+        function Excluir(){
+            var par = $(this).parent().parent(); //tr
+            //par.animate({opacity : '0'});
+            par.remove();
+        }
     });
 </script>

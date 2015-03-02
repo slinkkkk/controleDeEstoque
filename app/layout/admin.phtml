@@ -34,6 +34,7 @@ $user  = $sessionHelper->selectSession("userData");
         $con->stylesheet( TEMANEON . "assets/css/neon-theme.css");
         $con->stylesheet( TEMANEON . "assets/css/neon-forms.css");
         $con->stylesheet( TEMANEON . "assets/css/custom.css");
+        $con->stylesheet( TEMANEON . "assets/js/selectboxit/jquery.selectBoxIt.css");
 
         $con->jsScript( TEMANEON . "assets/js/jquery-1.11.0.min.js");
     ?>
@@ -55,6 +56,7 @@ $user  = $sessionHelper->selectSession("userData");
                 <div class="logo">
                     <a href="<?php $redirectorHelper->getLink("index","index",true); ?>">
                         <?php $con->image(TEMANEON."assets/images/logo.png",120)?>
+                        <?php //$con->image(TEMANEON."assets/images/logoCliente/VEN.png",120)?>
                     </a>
                 </div>
                 <!-- logo collapse icon -->
@@ -117,6 +119,26 @@ $user  = $sessionHelper->selectSession("userData");
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#">
+                        <i class="entypo-user-add"></i>
+                        <span>Funcionários</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("usuario","index",true); ?>">
+                                <i class="entypo-plus-circled"></i>
+                                <span>Cadastrar Funcionários</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php $redirectorHelper->getLink("usuario","menu",true); ?>">
+                                <i class="entypo-menu"></i>
+                                <span>Menu Funcionários</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
@@ -146,7 +168,8 @@ $user  = $sessionHelper->selectSession("userData");
     $con->jsScript( TEMANEON . "assets/js/jquery.validate.min.js");
     $con->jsScript( TEMANEON . "assets/js/neon-login.js");
     $con->jsScript( TEMANEON . "assets/js/neon-custom.js");
-
+    $con->jsScript( TEMANEON . "assets/js/selectboxit/jquery.selectBoxIt.min.js");
+    $con->jsScript( TEMANEON . "assets/js/jquery.inputmask.bundle.min.js");
 ?>
 </body>
 </html>

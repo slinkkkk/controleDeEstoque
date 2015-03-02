@@ -8,11 +8,20 @@
 class EquipamentosModel extends Model{
     public $_tabela = "equipamentos";
 
-    public function listaEquipamento($where = null, $qtd = NULL ){
-        return $this->read( $where , $qtd, null , "id_equipamentos ASC");
+    public function listaEquipamento($where = null, $qtd = NULL , $offset = null, $order = "id_equipamentos ASC"){
+        return $this->read( $where , $qtd, $offset, $order  );
     }
 
     public function cadastrarEquipamento( Array $dados ){
        return $this->insert($dados);
+    }
+
+    public function alterarEquipamento( Array $dados , $where){
+        return $this->update($dados , $where);
+    }
+
+    public function deleteEquipamento( $where )
+    {
+        return $this->delete($where);
     }
 }
