@@ -111,9 +111,11 @@
                 {
                     $(this).css({"border" : "1px solid #F00"});
                     cont++;
+                    console.log($(this));
                 }
             });
-            if(cont == 0)
+
+            if(cont == 1)
             {
                 $("#field-form").submit();
             }
