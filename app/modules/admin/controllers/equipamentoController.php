@@ -14,17 +14,18 @@ Class Equipamento extends Controller
     {
         $equip = new EquipamentosModel();
         $dados = array();
+
         $id = $this->getParam("id");
 
-        $equipFull = $equip->listaEquipamento(sprintf("id_equipamentos = %s",$id));
-
-        $dados['id'] = $id;
-        $dados['nome'] = $equipFull[0]["nome"];
-        $dados['marca'] = $equipFull[0]["marca"];
-        $dados['codigo'] = $equipFull[0]["codigo"];
-        $dados['condicao'] = $equipFull[0]["condicao"];
-        $dados['obs'] = $equipFull[0]["obs"];
-
+        if($id) {
+            $equipFull = $equip->listaEquipamento(sprintf("id_equipamentos = %s", $id));
+            $dados['id'] = $id;
+            $dados['nome'] = $equipFull[0]["nome"];
+            $dados['marca'] = $equipFull[0]["marca"];
+            $dados['codigo'] = $equipFull[0]["codigo"];
+            $dados['condicao'] = $equipFull[0]["condicao"];
+            $dados['obs'] = $equipFull[0]["obs"];
+        }
         $this->view("index",$dados);
     }
 
