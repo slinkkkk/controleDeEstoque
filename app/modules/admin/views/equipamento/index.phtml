@@ -1,7 +1,22 @@
 <h2>Cadastro de Equipamento</h2>
 <hr/>
-<form method="post" action="<?php $redirectorHelper->getLink("equipamento", ($view_codigo != "")? "editar" : "cadastrar", true); ?>">
+<form method="post" action="<?php $redirectorHelper->getLink("equipamento", ($view_codigo != "")? "editar" : "cadastrar", true); ?>" id="field-form">
     <input type="hidden" id="field-id" name="id" value=<?php echo $view_id ?> >
+    <div class="panel panel-invert panel-shadow form-actions">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6 text-right">
+
+                    <a href="<?php $redirectorHelper->getLink("equipamento","menu",true); ?>" class="btn btn-default btn-icon btn-lg icon-left">Voltar<i class="entypo-left-open"></i></a>
+                    <button type="button" class="btn btn-green btn-icon btn-lg" id="field-botao">Salvar<i class="entypo-check"></i></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="tocify-content">
@@ -47,8 +62,7 @@
                                     </div>
                                     <br/>
                                 </div>
-                                <button type="submit" class="btn btn-green btn-icon">Cadastrar <i
-                                        class="entypo-check"></i></button>
+
                             </div>
                         </div>
                     </div>
@@ -77,5 +91,33 @@
                 barcode = barcode + String.fromCharCode(code);
             }
         });
+
+        $("input").blur(function(){
+            if($(this).val() == "")
+            {
+                $(this).css({"border" : "1px solid #F00"});
+            }
+            else
+            {
+                $(this).css({"border" : "1px solid #4cbf15"});
+            }
+        });
+
+
+        $("#field-botao").click(function(){
+            var cont = 0;
+            $("#field-form input").each(function(){
+                if($(this).val() == "")
+                {
+                    $(this).css({"border" : "1px solid #F00"});
+                    cont++;
+                }
+            });
+            if(cont == 0)
+            {
+                $("#field-form").submit();
+            }
+        });
+
     });
 </script>

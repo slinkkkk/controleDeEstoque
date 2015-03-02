@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - studioprime14@mysql17.studioprime.com.br" uuid="3dc4a035-4db9-45cf-a4e8-b6d63ebb223d">
-    <database-info product="MySQL" version="5.6.21-69.0-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
-      <extra-name-characters>#@</extra-name-characters>
-      <identifier-quote-string>`</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
-    <schema name="" catalog="studioprime14"/>
-    <table name="equipamentos" schema="" catalog="studioprime14" type="TABLE">
-      <column name="id_equipamentos" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="data_criado" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
-      <column name="nome" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <column name="marca" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <column name="codigo" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
-      <column name="condicao" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
-      <column name="obs" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id_equipamentos"/>
-      <exported-key name="equipamentos_id" table="lista_equipamento_item" schema="" catalog="studioprime14" columns="id_equipamentos"/>
-      <index name="id_equipamentos_UNIQUE" unique="true" columns="id_equipamentos"/>
-    </table>
-    <table name="lista_equipamento" schema="" catalog="studioprime14" type="TABLE">
-      <column name="id_lista_equipamento" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="local" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
-      <column name="cliente" sqlType="VARCHAR" precision="120" scale="0" nullable="false" jdbcType="12"/>
-      <column name="responsavel" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <column name="cpf" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="data_criado" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
-      <primary-key name="PRIMARY" columns="id_lista_equipamento"/>
-      <exported-key name="lista_equipamento_id" table="lista_equipamento_item" schema="" catalog="studioprime14" columns="id_lista_equipamento"/>
-      <index name="id_lista_equipamento_UNIQUE" unique="true" columns="id_lista_equipamento"/>
-    </table>
-    <table name="lista_equipamento_item" schema="" catalog="studioprime14" type="TABLE">
-      <column name="id_lista_equipamento_item" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="id_equipamentos" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="id_lista_equipamento" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="data_retirado" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
-      <column name="data_devolvido" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
-      <primary-key name="PRIMARY" columns="id_lista_equipamento_item"/>
-      <foreign-key name="equipamentos_id" columns="id_equipamentos" ref-table="equipamentos" ref-schema="" ref-catalog="studioprime14" ref-columns="id_equipamentos" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="lista_equipamento_id" columns="id_lista_equipamento" ref-table="lista_equipamento" ref-schema="" ref-catalog="studioprime14" ref-columns="id_lista_equipamento" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="id_lista_equipamento_item_UNIQUE" unique="true" columns="id_lista_equipamento_item"/>
-      <index name="equipamentos_id_idx" unique="false" columns="id_equipamentos"/>
-      <index name="lista_equipamento_id_idx" unique="false" columns="id_lista_equipamento"/>
-    </table>
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

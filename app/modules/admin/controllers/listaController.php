@@ -72,9 +72,9 @@ Class Lista extends Controller
         $this->_titleTabela = array("Nome","Marca","Codigo","Observação");
         $this->_col = array("nome","marca","codigo","obs");
         $listaId = $lista->listaLista();
-        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s"),$listaId[0]["id_lista_equipamento"]);
+        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
         foreach($itens as $itensLista):
-            $valoresTabela = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s"),$itensLista["id_equipamentos"]);
+            $valoresTabela = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s",$itensLista["id_equipamentos"]));
             $cont = 0;
             foreach($valoresTabela as $row):
                 foreach($this->_col as $coluna):
@@ -94,10 +94,12 @@ Class Lista extends Controller
         $listaEquipe = new ListaEquipamentoModel();
         $this->_titleTabela = array("Nome","Marca","Código","Observação");
         $this->_col = array("nome","marca","codigo","obs");
+
         $listaId = $lista->listaLista();
-        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s"),$listaId[0]["id_lista_equipamento"]);
+        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
+
         foreach($itens as $itensLista):
-            $valoresTabela = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s"),$itensLista["id_equipamentos"]);
+            $valoresTabela = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s",$itensLista["id_equipamentos"]));
             $cont = 0;
             foreach($valoresTabela as $row):
                 foreach($this->_col as $coluna):

@@ -117,7 +117,6 @@ Class Equipamento extends Controller
 
         $id = $this->getParam("id");
 
-
         $listaEquipe->deletarListaEquipamento(sprintf("id_equipamentos = %s",$id));
         $equip->deleteEquipamento(sprintf("id_equipamentos = %s",$id));
         $redirect->goToAction("menu",true);
