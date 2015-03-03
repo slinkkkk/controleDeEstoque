@@ -37,25 +37,29 @@ Class Equipamento extends Controller
         $this->_col = array("nome","marca","condicao","codigo","obs","ações");
 
         $equip = new EquipamentosModel();
-        $valoresTabela = $equip->listaEquipamento();
+
+        $pagina = ($this->getParam('pagina') != null) ? $this->getParam('pagina'): 1;
+        $total = count( $equip->listaEquipamento() );
+        $registros = 15;
+        $dados['num_pg']= ceil($total/$registros);
+        $inicio = ($registros*$pagina)-$registros;
+
+        $valoresTabela = $equip->listaEquipamento(null,$registros,$inicio);
 
         $cont = 0;
         foreach($valoresTabela as $row):
             foreach($this->_col as $coluna):
-                if($coluna == "ações")
-                {
+                if($coluna == "ações") {
                     $this->_value[$cont][$coluna] = sprintf("<a href='%s'><button type='button' class='btn btn-gold btn-icon btn-sm'> Editar <i class='entypo-pencil'></i> </button></a>",$redirect->setUrlParameters("id",$row["id_equipamentos"])->getLinkTabela("equipamento","index",true)).' '.
                                                     sprintf("<a href='%s'><button type='button' class='btn btn-red btn-icon btn-sm'> Remover <i class='entypo-cancel'></i> </button></a>",$redirect->setUrlParameters("id",$row["id_equipamentos"])->getLinkTabela("equipamento","deletar",true));
-                }
-                else
-                {
+                }else{
                     $this->_value[$cont][$coluna] = $row[$coluna];
                 }
             endforeach;
             $cont++;
         endforeach;
 
-        $this->view("menu");
+        $this->view("menu",$dados);
     }
 
     public function cadastrar()

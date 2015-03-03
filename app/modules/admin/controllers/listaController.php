@@ -26,7 +26,13 @@ Class Lista extends Controller
         $this->_col = array("id_responsavel","id_cliente","data_criado","acoes");
         $lista = new ListaModel();
 
-        $valoresTabela = $lista->listaLista();
+        $pagina = ($this->getParam('pagina') != null) ? $this->getParam('pagina'): 1;
+        $total = count( $lista->listaLista() );
+        $registros = 15;
+        $dados['num_pg']= ceil($total/$registros);
+        $inicio = ($registros*$pagina)-$registros;
+
+        $valoresTabela = $lista->listaLista(null,$registros,$inicio);
 
         $cont = 0;
         foreach($valoresTabela as $row):
@@ -61,7 +67,7 @@ Class Lista extends Controller
             $cont++;
          endforeach;
 
-        $this->view("menu");
+        $this->view("menu",$dados);
     }
 
     public function imprimir()
@@ -91,7 +97,7 @@ Class Lista extends Controller
             $cont++;
         endforeach;
 
-        $this->tabela(true);
+        $this->tabela(null,true);
     }
 
     public function visualizar()

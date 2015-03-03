@@ -43,9 +43,10 @@ class Controller extends System{
         require_once( $layout );
     }
 
-    public function tabela($print = false)
+    public function tabela($num_pg = 0 ,$print = false)
     {
         $layout =  ($print == false) ? sprintf("%s/tabela.phtml",LAYOUT) : sprintf("%s/print.phtml",LAYOUT) ;
+
         require_once( $layout );
     }
 
