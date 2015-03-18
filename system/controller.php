@@ -1,7 +1,7 @@
 <?php
 class Controller extends System{
 
-    public $title = "Studio Prime", $redirect, $_col = array() , $_value = array();
+    public $title = "Studio Prime", $redirect, $_col = array() , $_value = array() , $_titleTabela = array();
 
 
 	protected function view( $nome ,$vars = null )
@@ -43,12 +43,12 @@ class Controller extends System{
         require_once( $layout );
     }
 
-    public function tabela()
+    public function tabela($num_pg = 0 ,$print = false)
     {
-        $layout = sprintf("%s/tabela.phtml",LAYOUT);
+        $layout =  ($print == false) ? sprintf("%s/tabela.phtml",LAYOUT) : sprintf("%s/print.phtml",LAYOUT) ;
+
         require_once( $layout );
     }
-
 
     public function stylesheet ( $caminho )
     {
@@ -68,11 +68,19 @@ class Controller extends System{
         echo $caminhoFinal;
     }
 
+    public function imageTabela ( $caminho , $width = "" , $height = "" , $alt = "" , $class = "")
+    {
+        $caminhoFinal = "<img src='$caminho' width='$width' height='$height' alt='$alt' class='$class' />";
+        return $caminhoFinal;
+    }
+
     public function link ( $caminho )
     {
         $caminhoFinal = "<link rel='icon' href='$caminho' type='image/x-icon'>";
         echo $caminhoFinal;
     }
+
+
 
     public function init()
     {

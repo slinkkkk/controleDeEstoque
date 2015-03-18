@@ -76,4 +76,10 @@
             echo $link;
         }
 
+        public function getLinkTabela( $controller , $action , $admin = false )
+        {
+            $link = (!$admin ) ? '/' . $controller .'/'. $action .'/'. $this->getUrlParameters() : '/admin/' . $controller .'/'. $action .'/'. $this->getUrlParameters() ;;
+            return $link;
+        }
+
     }

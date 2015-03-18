@@ -1,6 +1,22 @@
 <h2>Cadastro de Equipamento</h2>
 <hr/>
-<form method="post" action="<?php $redirectorHelper->getLink("equipamento", "cadastrar", true); ?>">
+<form method="post" action="<?php $redirectorHelper->getLink("equipamento", ($view_codigo != "")? "editar" : "cadastrar", true); ?>" id="field-form">
+    <input type="hidden" id="field-id" name="id" value=<?php echo $view_id ?> >
+    <div class="panel panel-invert panel-shadow form-actions">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6 text-right">
+
+                    <a href="<?php $redirectorHelper->getLink("equipamento","menu",true); ?>" class="btn btn-default btn-icon btn-lg icon-left">Voltar<i class="entypo-left-open"></i></a>
+                    <button type="button" class="btn btn-green btn-icon btn-lg" id="field-botao">Salvar<i class="entypo-check"></i></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="tocify-content">
@@ -17,22 +33,22 @@
                                     <br/>
                                     <label for="field-nome" class="control-label">Nome</label>
                                     <input type="text" name="nome" class="form-control" id="field-nome"
-                                           placeholder="Nome" data-validate="required" value="">
+                                           placeholder="Nome" data-validate="required" value="<?php echo $view_nome;?>">
                                     <br/>
                                     <label for="field-nome" class="control-label">Marca</label>
                                     <input type="text" name="marca" class="form-control" id="field-marca"
-                                           placeholder="Marca" data-validate="required" value="">
+                                           placeholder="Marca" data-validate="required" value="<?php echo $view_marca;?>">
                                     <br/>
                                     <label for="field-nome" class="control-label">Observações</label>
                                     <textarea name="obs" class="form-control" id="field-obs"
-                                              placeholder="Observações"></textarea>
+                                              placeholder="Observações"><?php echo $view_obs;?></textarea>
                                 </div>
 
                                 <div class="col-md-6">
                                     <br/>
                                     <label for="field-nome" class="control-label">Código</label>
                                     <input type="text" name="codigo" class="form-control" id="field-codigo"
-                                           placeholder="Código" data-validate="required" value="">
+                                           placeholder="Código" data-validate="required" value="<?php echo $view_codigo;?>" <?php echo ($view_codigo != "")? "disabled" : ""?> >
                                 </div>
                                 <div class="col-md-6">
                                     <br/>
@@ -41,13 +57,12 @@
                                     <div class="input-spinner">
                                         <button type="button" class="btn btn-default">-</button>
                                         <input type="text" name="condicao" class="form-control size-1"
-                                               id="field-condicao" value="1" data-min="1" data-max="5">
+                                               id="field-condicao" value="<?php echo ($view_condicao != "") ? $view_condicao : 5 ;?>" data-min="1" data-max="5">
                                         <button type="button" class="btn btn-default">+</button>
                                     </div>
                                     <br/>
                                 </div>
-                                <button type="submit" class="btn btn-green btn-icon">Cadastrar <i
-                                        class="entypo-check"></i></button>
+
                             </div>
                         </div>
                     </div>
@@ -76,5 +91,35 @@
                 barcode = barcode + String.fromCharCode(code);
             }
         });
+
+        $("input").blur(function(){
+            if($(this).val() == "")
+            {
+                $(this).css({"border" : "1px solid #F00"});
+            }
+            else
+            {
+                $(this).css({"border" : "1px solid #4cbf15"});
+            }
+        });
+
+
+        $("#field-botao").click(function(){
+            var cont = 0;
+            $("#field-form input").each(function(){
+                if($(this).val() == "")
+                {
+                    $(this).css({"border" : "1px solid #F00"});
+                    cont++;
+                    console.log($(this));
+                }
+            });
+
+            if(cont == 1)
+            {
+                $("#field-form").submit();
+            }
+        });
+
     });
 </script>

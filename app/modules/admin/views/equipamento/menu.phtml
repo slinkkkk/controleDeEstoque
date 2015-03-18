@@ -1,31 +1,3 @@
 <h2>Menu de Equipamento</h2>
 <hr/>
-
-<?php $this->tabela(); ?>
-
-<script>
-    $(document).ready(function(){
-
-
-        $("#btn-teste").click(function(){ sendform() });
-
-        function sendform()
-        {
-            fnome = $('#nome').val();
-            fmail = $('#mail').val();
-
-            $.post($("#f").attr("action"),{nome: fnome, mail: fmail},
-            function(data)
-            {
-                if(data == 1)
-                {
-                    $("#field-teste").html("Preencha todos os campos!");
-                }
-                else
-                {
-                    $("#field-teste").html(data);
-                }
-            });
-        }
-    });
-</script>
+<?php $this->tabela($view_num_pg); ?>

@@ -1,8 +1,39 @@
+<?php if($num_pg > 0):?>
+<ul class="pagination">
+
+    <?php $pagina = ($this->getParam('pagina') != null) ? $this->getParam('pagina'): 1; ?>
+
+    <?php $disabled = ($pagina == 1) ? true : false; ?>
+    <?php if($disabled): ?>
+        <li class="disabled"><a href=""><i class="entypo-left-open-mini"></i></a></li>
+    <?php else: ?>
+        <li><a href="<?php $this->redirect->setUrlParameters("pagina",sprintf("%d",$this->getParam('pagina') - 1))->getLink("equipamento","menu",true); ?>"><i class="entypo-left-open-mini"></i></a></li>
+    <?php endif; ?>
+
+    <?php
+        for($i = 1; $i <  $num_pg + 1 ; $i++) :
+        $active = ($pagina == $i) ? 'active' : NULL ;
+    ?>
+        <li class="<?php echo $active ?>"><a href="<?php $this->redirect->setUrlParameters("pagina",sprintf("%d",$i))->getLink("equipamento","menu",true); ?>"><?php echo $i;?></a></li>
+    <?php
+        endfor;
+    ?>
+
+    <?php $disabled = ($pagina == $num_pg) ? true : false; ?>
+
+    <?php if($disabled): ?>
+        <li class="disabled"><a href=""><i class="entypo-right-open-mini"></i></a></li>
+    <?php else: ?>
+        <li><a href="<?php $this->redirect->setUrlParameters("pagina",sprintf("%d",$this->getParam('pagina') + 1))->getLink("equipamento","menu",true); ?>"><i class="entypo-right-open-mini"></i></a></li>
+    <?php endif; ?>
+</ul>
+<?php endif; ?>
+
 <table class="table table-bordered datatable" id="table-1">
     <thead>
         <tr>
-            <?php foreach($this->_col as $row): ?>
-                <th><?php echo ucfirst($row); ?></th>
+            <?php foreach($this->_titleTabela as $row): ?>
+                <th><?php echo $row; ?></th>
             <?php endforeach; ?>
         </tr>
     </thead>
@@ -19,8 +50,8 @@
 
     <tfoot>
         <tr>
-            <?php foreach($this->_col as $row): ?>
-                <th><?php echo ucfirst($row); ?></th>
+            <?php foreach($this->_titleTabela as $row): ?>
+                <th><?php echo $row; ?></th>
             <?php endforeach; ?>
         </tr>
     </tfoot>
