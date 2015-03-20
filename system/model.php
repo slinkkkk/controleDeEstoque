@@ -21,7 +21,7 @@ class Model
         $valores = implode(", ", array_values($dados));
 
         $sql = " INSERT INTO `{$this->_tabela}` ({$campos}) VALUES ({$valores}) ";
-
+        //var_dump($sql);exit;
         return $this->_db->query($sql);
     }
 
@@ -42,15 +42,20 @@ class Model
     public function update(Array $dados, $where)
     {
         foreach ($dados as $ind => $val) {
-            $campos[] = "{$ind} = '{$val}'";
+            $campos[] = "{$ind} = {$val}";
         }
         $campos = implode(", ", $campos);
-        return $this->_db->query(" UPDATE `{$this->_tabela}` SET {$campos} WHERE {$where} ");
+
+        $sql =" UPDATE `{$this->_tabela}` SET {$campos} WHERE {$where} ";
+        //var_dump($sql);exit;
+        return $this->_db->query($sql);
     }
 
     public function delete($where)
     {
-        return $this->_db->query(" DELETE FROM `{$this->_tabela}` WHERE {$where} ");
+        $sql = " DELETE FROM `{$this->_tabela}` WHERE {$where} ";
+        //var_dump($sql);exit;
+        return $this->_db->query($sql);
     }
 
     /**

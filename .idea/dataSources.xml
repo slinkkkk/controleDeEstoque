@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3742773267">
+  <component name="DataSourceManagerImpl" format="xml" hash="180248074">
     <data-source source="LOCAL" name="MySQL - studioprime14@mysql17.studioprime.com.br" uuid="3dc4a035-4db9-45cf-a4e8-b6d63ebb223d">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
