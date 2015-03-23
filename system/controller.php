@@ -36,6 +36,11 @@ class Controller extends System{
 		require_once( $layout );
 	}
 
+    public function error(){
+
+
+    }
+
 
     public function login()
     {

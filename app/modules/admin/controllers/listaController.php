@@ -102,36 +102,39 @@ Class Lista extends Controller
 
     public function visualizar()
     {
-        $id = $this->getParam("id");
-
         $lista = new ListaModel();
         $equipamento = new EquipamentosModel();
         $listaEquipe = new ListaEquipamentoModel();
-        $this->_titleTabela = array("Nome","Marca","Código","Observação");
-        $this->_col = array("nome","marca","codigo","obs");
 
-
-
+        $id = $this->getParam("id");
         $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
-        var_dump($listaId);
-        exit;
-        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
-        $valoresTabela = array();
+        if(isset($listaId)) {
+            $this->_titleTabela = array("Nome", "Marca", "Código", "Observação");
+            $this->_col = array("nome", "marca", "codigo", "obs");
 
-        foreach($itens as $itensLista):
-            $equipFull = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s",$itensLista["id_equipamentos"]));
-            array_push($valoresTabela ,$equipFull[0]);
-        endforeach;
 
-        $cont = 0;
-        foreach($valoresTabela as $row):
-            foreach($this->_col as $coluna):
-                $this->_value[$cont][$coluna] = $row[$coluna];
+            var_dump($listaId);
+            exit;
+            $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s", $listaId[0]["id_lista_equipamento"]));
+            $valoresTabela = array();
+
+            foreach ($itens as $itensLista):
+                $equipFull = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s", $itensLista["id_equipamentos"]));
+                array_push($valoresTabela, $equipFull[0]);
             endforeach;
-            $cont++;
-        endforeach;
 
-        $this->view("visualizarItens");
+            $cont = 0;
+            foreach ($valoresTabela as $row):
+                foreach ($this->_col as $coluna):
+                    $this->_value[$cont][$coluna] = $row[$coluna];
+                endforeach;
+                $cont++;
+            endforeach;
+
+            $this->view("visualizarItens");
+        }
+        else
+        {$this->view("visualizarItens");}
     }
 
     public function deletar()
