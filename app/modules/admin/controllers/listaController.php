@@ -102,15 +102,19 @@ Class Lista extends Controller
 
     public function visualizar()
     {
+        $id = $this->getParam("id");
+        
         $lista = new ListaModel();
         $equipamento = new EquipamentosModel();
         $listaEquipe = new ListaEquipamentoModel();
         $this->_titleTabela = array("Nome","Marca","Código","Observação");
         $this->_col = array("nome","marca","codigo","obs");
 
-        $id = $this->getParam("id");
+
 
         $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
+        echo $listaId;
+        exit;
         $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
         $valoresTabela = array();
 

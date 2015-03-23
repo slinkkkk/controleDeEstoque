@@ -17,11 +17,11 @@
         <li class="<?php echo $active ?>"><a href="<?php $this->redirect->setUrlParameters("pagina",sprintf("%d",$i))->getLink("equipamento","menu",true); ?>"><?php echo $i;?></a></li>
     <?php
         endfor;
-    ?>
 
-    <?php $disabled = ($pagina == $num_pg) ? true : false; ?>
 
-    <?php if($disabled): ?>
+    $disabled = ($pagina == $num_pg) ? true : false;
+
+   if($disabled): ?>
         <li class="disabled"><a href=""><i class="entypo-right-open-mini"></i></a></li>
     <?php else: ?>
         <li><a href="<?php $this->redirect->setUrlParameters("pagina",sprintf("%d",$this->getParam('pagina') + 1))->getLink("equipamento","menu",true); ?>"><i class="entypo-right-open-mini"></i></a></li>
