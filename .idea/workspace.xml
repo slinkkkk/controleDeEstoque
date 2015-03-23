@@ -31,11 +31,11 @@
       <file leaf-file-name="listaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55959135" vertical-offset="1513" max-vertical-offset="3570">
-              <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.38592508" vertical-offset="1513" max-vertical-offset="3570">
+              <caret line="109" column="80" selection-start-line="109" selection-start-column="80" selection-end-line="109" selection-end-column="80" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
-                <marker date="1427134466723" expanded="true" signature="7798:7808" placeholder="{...}" />
+                <marker date="1427134774497" expanded="true" signature="7798:7808" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -473,7 +473,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427134213044</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Merge branch 'master' of https://github.com/slinkkkk/controleDeEstoque&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;">
+      <created>1427134481421</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1427134481421</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -951,11 +957,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55959135" vertical-offset="1513" max-vertical-offset="3570">
-          <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.38592508" vertical-offset="1513" max-vertical-offset="3570">
+          <caret line="109" column="80" selection-start-line="109" selection-start-column="80" selection-end-line="109" selection-end-column="80" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <marker date="1427134466723" expanded="true" signature="7798:7808" placeholder="{...}" />
+            <marker date="1427134774497" expanded="true" signature="7798:7808" placeholder="{...}" />
           </folding>
         </state>
       </provider>
