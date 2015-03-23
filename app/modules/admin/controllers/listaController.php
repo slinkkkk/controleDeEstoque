@@ -108,13 +108,11 @@ Class Lista extends Controller
 
         $id = $this->getParam("id");
         $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
-        if(isset($listaId)) {
+        if(count($listaId) > 0) {
             $this->_titleTabela = array("Nome", "Marca", "Código", "Observação");
             $this->_col = array("nome", "marca", "codigo", "obs");
 
 
-            var_dump($listaId);
-            exit;
             $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s", $listaId[0]["id_lista_equipamento"]));
             $valoresTabela = array();
 

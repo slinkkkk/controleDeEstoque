@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="416580bb-9c48-489f-9461-74666903ad7c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/controller.php" afterPath="$PROJECT_DIR$/system/controller.php" />
+    <list default="true" id="416580bb-9c48-489f-9461-74666903ad7c" name="Default" comment="&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/admin/controllers/listaController.php" afterPath="$PROJECT_DIR$/app/modules/admin/controllers/listaController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,11 +31,11 @@
       <file leaf-file-name="listaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8876277" vertical-offset="1530" max-vertical-offset="3604">
-              <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.55959135" vertical-offset="1513" max-vertical-offset="3570">
+              <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
-                <marker date="1427134202060" expanded="true" signature="7844:7854" placeholder="{...}" />
+                <marker date="1427134466723" expanded="true" signature="7798:7808" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -468,7 +467,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427133596857</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Merge branch 'master' of https://github.com/slinkkkk/controleDeEstoque&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;">
+      <created>1427134213044</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1427134213044</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -946,11 +951,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8876277" vertical-offset="1530" max-vertical-offset="3604">
-          <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.55959135" vertical-offset="1513" max-vertical-offset="3570">
+          <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
-            <marker date="1427134202060" expanded="true" signature="7844:7854" placeholder="{...}" />
+            <marker date="1427134466723" expanded="true" signature="7798:7808" placeholder="{...}" />
           </folding>
         </state>
       </provider>
