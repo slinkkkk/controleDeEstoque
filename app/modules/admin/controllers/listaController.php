@@ -108,7 +108,7 @@ Class Lista extends Controller
 
         $id = $this->getParam("id");
         $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
-        if(count($listaId) > 1) {
+        if(count($listaId) > 0) {
             $this->_titleTabela = array("Nome", "Marca", "Código", "Observação");
             $this->_col = array("nome", "marca", "codigo", "obs");
 
@@ -132,7 +132,7 @@ Class Lista extends Controller
             $this->view("visualizarItens");
         }
         else
-        {$this->view("visualizarItens");}
+        {$this->view("erro");}
     }
 
     public function deletar()
