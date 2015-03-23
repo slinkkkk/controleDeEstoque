@@ -103,7 +103,7 @@ Class Lista extends Controller
     public function visualizar()
     {
         $id = $this->getParam("id");
-        
+
         $lista = new ListaModel();
         $equipamento = new EquipamentosModel();
         $listaEquipe = new ListaEquipamentoModel();
@@ -113,7 +113,7 @@ Class Lista extends Controller
 
 
         $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
-        echo $listaId;
+        var_dump($listaId);
         exit;
         $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
         $valoresTabela = array();
