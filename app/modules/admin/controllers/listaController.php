@@ -9,21 +9,28 @@
 Class Lista extends Controller
 {
 
-    private $_cliente;
+    private $_modelCliente;
+    private $_modelLista;
+    private $_modelEquipamento;
+    private $_modelListaEquipamentos;
+    private $_modelUsuario;
 
     public function __construct()
     {
+        $this->_modelCliente = new ClienteModel();
+        $this->_modelLista = new ListaModel();
+        $this->_modelEquipamento = new EquipamentosModel();
+        $this->_modelListaEquipamentos = new ListaEquipamentoModel();
+        $this->_modelUsuario = new UsuarioModel();
         parent::__construct();
-        $this->_cliente = new ClienteModel();
     }
 
     public function index_action()
     {
-        $cliente = new ClienteModel();
-        $func = new UsuarioModel();
+
         $listaView = array();
-        $listaView['clientes'] = $cliente->listaCliente(null,null,null,"nome ASC");
-        $listaView['usuario'] = $func->listaUsuarios(null,null,null,"nome ASC");
+        $listaView['clientes'] = $this->_cliente->listaCliente(null,null,null,"nome ASC");
+        $listaView['usuario'] = $this->_modelUsuario->listaUsuarios(null,null,null,"nome ASC");
 
         $this->view("index",$listaView);
     }
@@ -33,15 +40,15 @@ Class Lista extends Controller
         $redirect = new RedirectorHelper();
         $this->_titleTabela = array("Responsável","Cliente","Data Criado","Ações");
         $this->_col = array("id_responsavel","id_cliente","data_criado","acoes");
-        $lista = new ListaModel();
+        
 
         $pagina = ($this->getParam('pagina') != null) ? $this->getParam('pagina'): 1;
-        $total = count( $lista->listaLista() );
+        $total = count( $this->_modelLista->listaLista() );
         $registros = 15;
         $dados['num_pg']= ceil($total/$registros);
         $inicio = ($registros*$pagina)-$registros;
 
-        $valoresTabela = $lista->listaLista(null,$registros,$inicio);
+        $valoresTabela = $this->_modelLista->listaLista(null,$registros,$inicio);
 
         $cont = 0;
         foreach($valoresTabela as $row):
@@ -58,14 +65,13 @@ Class Lista extends Controller
                 }
                 elseif($coluna == "id_cliente")
                 {
-                    $cliente = new ClienteModel();
-                    $urlLogo = $cliente->listaCliente(sprintf("id = '%s'",$row[$coluna]));
+                    $urlLogo = $this->_cliente->listaCliente(sprintf("id = '%s'",$row[$coluna]));
                     $this->_value[$cont][$coluna] =  $this->imageTabela(TEMANEON."assets/".$urlLogo[0]["urlLogo"]);
                 }
                 elseif($coluna == "id_responsavel")
                 {
-                    $user = new UsuarioModel();
-                    $userResp = $user->listaUsuarios(sprintf("id = '%s'",$row[$coluna]));
+
+                    $userResp = $this->_modelUsuario->listaUsuarios(sprintf("id = '%s'",$row[$coluna]));
                     $this->_value[$cont][$coluna] =  $userResp[0]["nome"].' '. $userResp[0]["sobrenome"];
                 }
                 else
@@ -81,20 +87,18 @@ Class Lista extends Controller
 
     public function imprimir()
     {
-        $lista = new ListaModel();
-        $equipamento = new EquipamentosModel();
-        $listaEquipe = new ListaEquipamentoModel();
+
         $this->_titleTabela = array("Nome","Marca","Código","Observação");
         $this->_col = array("nome","marca","codigo","obs");
 
         $id = $this->getParam("id");
 
-        $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
-        $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
+        $listaId = $this->_modelLista->listaLista(sprintf("id_lista_equipamento = %s",$id));
+        $itens = $this->_modelListaEquipamentos->listaListaEquipamento(sprintf("id_lista_equipamento = %s",$listaId[0]["id_lista_equipamento"]));
         $valoresTabela = array();
 
         foreach($itens as $itensLista):
-            $equipFull = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s",$itensLista["id_equipamentos"]));
+            $equipFull = $this->_modelEquipamento->listaEquipamento(sprintf("id_equipamentos = %s",$itensLista["id_equipamentos"]));
             array_push($valoresTabela ,$equipFull[0]);
         endforeach;
 
@@ -111,22 +115,20 @@ Class Lista extends Controller
 
     public function visualizar()
     {
-        $lista = new ListaModel();
-        $equipamento = new EquipamentosModel();
-        $listaEquipe = new ListaEquipamentoModel();
+        
 
         $id = $this->getParam("id");
-        $listaId = $lista->listaLista(sprintf("id_lista_equipamento = %s",$id));
+        $listaId = $this->_modelLista->listaLista(sprintf("id_lista_equipamento = %s",$id));
         if(count($listaId) > 0) {
             $this->_titleTabela = array("Nome", "Marca", "Código", "Observação");
             $this->_col = array("nome", "marca", "codigo", "obs");
 
 
-            $itens = $listaEquipe->listaListaEquipamento(sprintf("id_lista_equipamento = %s", $listaId[0]["id_lista_equipamento"]));
+            $itens = $this->_modelListaEquipamentos->listaListaEquipamento(sprintf("id_lista_equipamento = %s", $listaId[0]["id_lista_equipamento"]));
             $valoresTabela = array();
 
             foreach ($itens as $itensLista):
-                $equipFull = $equipamento->listaEquipamento(sprintf("id_equipamentos = %s", $itensLista["id_equipamentos"]));
+                $equipFull = $this->_modelEquipamento->listaEquipamento(sprintf("id_equipamentos = %s", $itensLista["id_equipamentos"]));
                 array_push($valoresTabela, $equipFull[0]);
             endforeach;
 
@@ -147,14 +149,14 @@ Class Lista extends Controller
     public function deletar()
     {
         $redirect = new RedirectorHelper();
-        $lista = new ListaModel();
-        $listaEquipe = new ListaEquipamentoModel();
+        
+        
 
         $id = $this->getParam("id");
 
 
-        $listaEquipe->deletarListaEquipamento(sprintf("id_lista_equipamento = %s",$id));
-        $lista->deletarLista(sprintf("id_lista_equipamento = %s",$id));
+        $this->_modelListaEquipamentos->deletarListaEquipamento(sprintf("id_lista_equipamento = %s",$id));
+        $this->_modelLista->deletarLista(sprintf("id_lista_equipamento = %s",$id));
 
         $redirect->goToAction("menu",true);
     }
@@ -162,29 +164,28 @@ Class Lista extends Controller
     public function cadastrar()
     {
         $redirect = new RedirectorHelper();
-        $lista = new ListaModel();
-        $listaEquipe = new ListaEquipamentoModel();
-        $equip = new EquipamentosModel();
+        
 
-        $cliente = htmlspecialchars(trim($_POST['cliente']));
+
+        $this->_cliente = htmlspecialchars(trim($_POST['cliente']));
         $responsavel = htmlspecialchars(trim($_POST['responsavel']));
         $itemCod = $_POST['itemCodigo'];
 
 
-        if(($cliente != "" ) and ($responsavel != "" ))
+        if(($this->_cliente != "" ) and ($responsavel != "" ))
         {
-            $lista->cadastrarLista(array(
-                "id_cliente" => sprintf("'%s'",$cliente),
+            $this->_modelLista->cadastrarLista(array(
+                "id_cliente" => sprintf("'%s'",$this->_cliente),
                 "id_responsavel" => sprintf("'%s'",$responsavel),
                 "data_criado" => "now()"
             ));
 
-            $idLista = $lista->listaLista(null,1,null,'id_lista_equipamento DESC');
+            $idLista = $this->_modelLista->listaLista(null,1,null,'id_lista_equipamento DESC');
 
             foreach($itemCod as $cod)
             {
-                $codEquipamento = $equip->listaEquipamento(sprintf("codigo = %s",$cod));
-                $listaEquipe->cadastrarListaEquipamento(array(
+                $codEquipamento = $this->_modelUsuario->listaEquipamento(sprintf("codigo = %s",$cod));
+                $this->_modelListaEquipamentos->cadastrarListaEquipamento(array(
                     "id_equipamentos" => sprintf("'%s'",$codEquipamento[0]["id_equipamentos"]),
                     "id_lista_equipamento" => sprintf("'%s'",$idLista[0]["id_lista_equipamento"]),
                     "data_retirado" => "now()"
@@ -197,11 +198,10 @@ Class Lista extends Controller
 
     public function verificarItem()
     {
-        $equip = new EquipamentosModel();
         if(trim($_POST['code']) != "" )
         {
             $codigo = $_POST['code'];
-            $equipamentoUnico = $equip->listaEquipamento(sprintf("codigo = %s",$codigo),1);
+            $equipamentoUnico = $this->_modelUsuario->listaEquipamento(sprintf("codigo = %s",$codigo),1);
 
             if (sizeof($equipamentoUnico) > 0) {
                 echo json_encode($equipamentoUnico);
