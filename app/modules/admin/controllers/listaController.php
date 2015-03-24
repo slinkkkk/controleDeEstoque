@@ -17,12 +17,12 @@ Class Lista extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->_modelCliente = new ClienteModel();
         $this->_modelLista = new ListaModel();
         $this->_modelEquipamento = new EquipamentosModel();
         $this->_modelListaEquipamentos = new ListaEquipamentoModel();
         $this->_modelUsuario = new UsuarioModel();
-        parent::__construct();
     }
 
     public function index_action()
