@@ -22,7 +22,7 @@ class Model
         $campos = implode(", ", array_keys($dados));
         $valores = implode(", ", array_values($dados));
 
-        $sql = " INSERT INTO '{$this->_tabela}' ({$campos}) VALUES ({$valores}) ";
+        $sql = " INSERT INTO {$this->_tabela} ({$campos}) VALUES ({$valores}) ";
         //var_dump($sql);exit;
         return $this->_db->query($sql);
     }
@@ -33,7 +33,7 @@ class Model
         $limit = ($limit != null ? "LIMIT {$limit}" : "");
         $offset = ($offset != null ? "OFFSET {$offset}" : "");
         $orderby = ($orderby != null ? "ORDER BY {$orderby}" : "");
-        $sql = " SELECT * FROM '{$this->_tabela}' {$where} {$orderby} {$limit} {$offset} ";
+        $sql = " SELECT * FROM {$this->_tabela} {$where} {$orderby} {$limit} {$offset} ";
         //var_dump($sql);exit;
 
         $q = $this->_db->query($sql);
@@ -48,14 +48,14 @@ class Model
         }
         $campos = implode(", ", $campos);
 
-        $sql =" UPDATE '{$this->_tabela}' SET {$campos} WHERE {$where} ";
+        $sql =" UPDATE {$this->_tabela} SET {$campos} WHERE {$where} ";
         //var_dump($sql);exit;
         return $this->_db->query($sql);
     }
 
     public function delete($where)
     {
-        $sql = " DELETE FROM '{$this->_tabela}' WHERE {$where} ";
+        $sql = " DELETE FROM {$this->_tabela} WHERE {$where} ";
         //var_dump($sql);exit;
         return $this->_db->query($sql);
     }
