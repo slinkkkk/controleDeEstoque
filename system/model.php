@@ -7,7 +7,7 @@ class Model
 
     public function  __construct($_tabela)
     {
-        $this->$_tabela = $_tabela;
+        $this->_tabela = $_tabela;
         try {
             $this->_db = new PDO('mysql:host=mysql17.studioprime.com.br;dbname=studioprime14', 'studioprime14', 'prime159357', array(1002 => 'SET NAMES utf8'));
 

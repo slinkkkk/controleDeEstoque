@@ -29,9 +29,9 @@ class Controller extends System{
 
 		$file = $caminhoView .$nome. '.phtml';
 		if ( !file_exists($file) )
-            die("Houve um erro. Layout não existe.");
+            die("Houve um erro. Layout não existe." . $file);
 		if ( !file_exists($layout) )
-			die("Houve um erro. Layout não existe.");
+			die("Houve um erro. Layout não existe." . $layout);
 
 		require_once( $layout );
 	}
