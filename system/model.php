@@ -5,11 +5,15 @@ class Model
     protected $_db;
     public $_tabela;
 
-    public function  __construct($tabela3)
+    public function  __construct($_tabela,$dbName)
     {
-        $this->_tabela = $tabela3;
+        $this->_tabela = $_tabela;
         try {
-            $this->_db = new PDO('mysql:host=mysql17.studioprime.com.br;dbname=studioprime14', 'studioprime14', 'prime159357', array(1002 => 'SET NAMES utf8'));
+            if($dbName == 'main')
+                $this->_db = new PDO('mysql:host=mysql17.studioprime.com.br;dbname=studioprime14', 'studioprime14', 'prime159357', array(1002 => 'SET NAMES utf8'));
+            else if($dbName == 'oldIntra')
+                $this->_db = new PDO('mysql:host=revadcontrol.no-ip.info;dbname=intranet_estoque', 'developer', 'prime@2013studio', array(1002 => 'SET NAMES utf8'));
+
 
         } catch (Exception $e) {
             echo $e;
