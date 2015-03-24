@@ -8,6 +8,14 @@
 
 Class Lista extends Controller
 {
+
+    private $_cliente;
+
+    public function __construct()
+    {
+        $this->_cliente = new ClienteModel();
+    }
+
     public function index_action()
     {
         $cliente = new ClienteModel();

@@ -6,7 +6,12 @@
  * Time: 15:36
  */
 class ClienteModel extends Model{
-    public $_tabela = "clientes";
+
+    public function __construct()
+    {
+        parent::__construct("clientes");
+
+    }
 
     public function listaCliente($where = null, $qtd = null , $offset = null, $order = 'id ASC' )
     {

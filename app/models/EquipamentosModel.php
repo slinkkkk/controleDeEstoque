@@ -6,7 +6,12 @@
  * Time: 15:36
  */
 class EquipamentosModel extends Model{
-    public $_tabela = "equipamentos";
+
+    public function __construct()
+    {
+        parent::__construct("equipamentos");
+
+    }
 
     public function listaEquipamento($where = null, $qtd = NULL , $offset = null, $order = "id_equipamentos ASC"){
         return $this->read( $where , $qtd, $offset, $order  );

@@ -6,7 +6,11 @@
  * Time: 15:36
  */
 class UsuarioModel extends Model{
-    public $_tabela = "funcionarios";
+    public function __construct()
+    {
+        parent::__construct("funcionarios");
+
+    }
 
     public function listaUsuarios($where = null, $qtd = null , $offset = null, $order = 'id ASC' )
     {

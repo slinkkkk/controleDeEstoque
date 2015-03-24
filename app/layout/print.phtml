@@ -22,18 +22,6 @@ $redirectorHelper = new RedirectorHelper();
 
     <title><?php echo $con->title?></title>
 
-    <?php
-    $con->stylesheet( TEMANEON . "assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css");
-    $con->stylesheet( TEMANEON . "assets/css/font-icons/entypo/css/entypo.css");
-    $con->stylesheet( "http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic");
-    $con->stylesheet( TEMANEON . "assets/css/bootstrap.css");
-
-    $con->stylesheet( TEMANEON . "assets/css/custom.css");
-
-
-    $con->jsScript( TEMANEON . "assets/js/jquery-1.11.0.min.js");
-    ?>
-
     <!--[if lt IE 9]> <?php $con->jsScript( TEMANEON . "assets/js/ie8-responsive-file-warning.js"); ?> <![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,23 +31,57 @@ $redirectorHelper = new RedirectorHelper();
     <![endif]-->
 </head>
 <body class="page-body" data-url="">
-    <table class="table table-bordered datatable" id="table-1">
-        <tr>
-            <td align="center" valign="center" >
-                <?php $con->image(TEMANEON."assets/images/logo2.png",360)?>
-            </td>
-            <td>
-                <p style="font-size: 18px;">
-                    Studio Prime Audio Visual ltda.<br />
-                    Rua Senador Soares, 55. Vila Isabel<br />
-                    Cnpj: 102.89065/0001-52<br />
-                    Tel: (21) 2578-4656
-                </p>
-            </td>
-        </tr>
-    </table>
-    <?php require_once( sprintf("%s/tabela.phtml",LAYOUT) ) ?>
-
+<table width="800" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="300" height="150" align="center" valign="middle"><image src="../images/logo1-300x90.png"  /></td>
+        <td width="250" align="center" valign="middle"><p>Studio Prime Audiovisual ltda.<br />
+                Rua Senador Soares, 55. Vila Isabel
+                <br />
+                Cnpj: 102.89065/0001-52<br />
+                Tel: (21) 2578-4656</p></td>
+        <td width="250" align="center" valign="middle"><image src="../barcode/generatebarcode.php?barcode=<?php echo substr($lista_codigo,0,-1); ?>" width="200" height="45" /><br /><?php echo $lista_codigo; ?></td>
+    </tr>
+    <tr valign="top">
+        <td width="300" height="50" align="left">Nome:<br /><?php echo $lista_nome; ?></td>
+        <td width="250" align="left">Data de retirada:<br /><?php echo $lista_retirada_ageita; ?></td>
+        <td width="250" align="left">Data de retorno:<br /><?php echo $lista_retorno_ageita; ?></td>
+    </tr>
+    <tr valign="top">
+        <td width="300" height="50" align="left">Responsavel:<br /><?php echo $lista_resp_nome; ?></td>
+        <td width="250" align="left">Numero de items:<br /><?php echo $itemscount; ?></td>
+        <td width="250" align="left">Valor Total:<br /><?php echo number_format ($valortotallista,2,",","."); ?></td>
+    </tr>
+    <tr valign="top">
+        <td width="300" height="50" align="left">Cobertura:<br /><?php echo $cobertura; ?></td>
+        <td width="250" align="left">Equipe:<br /><?php echo $equipe; ?></td>
+        <td width="250" align="left">Local/Transporte:<br /><?php echo $localtrans; ?></td>
+    </tr>
+</table>
+<table width="800" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="100" align="left" valign="top">Obs:<br /><font color="#FF0000"><?php echo $lista_obs; ?> </font></td>
+    </tr>
+</table>
+<table width="800" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="30" align="center" valign="middle">Conteúdo da lista de locação</td>
+    </tr>
+</table>
+<table width="800" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="270" align="center" valign="middle">Nome</td>
+        <td width="80" align="center" valign="middle">Marca</td>
+        <td width="100" align="center" valign="middle">Lacre</td>
+        <td width="50" align="center" valign="middle">Ptr</td>
+        <td width="50" align="center" valign="middle">Local</td>
+        <td width="50" align="center" valign="middle">Qtd</td>
+        <td width="100" align="center" valign="middle">Obs</td>
+        <td width="100" align="center" valign="middle">Valor</td>
+    </tr>
+    <?php
+    echo $tabelaitems;
+    ?>
+</table>
 <script>
     window.print();
 </script>
