@@ -29,7 +29,7 @@ Class Lista extends Controller
     {
 
         $listaView = array();
-        $listaView['clientes'] = $this->_cliente->listaCliente(null,null,null,"nome ASC");
+        $listaView['clientes'] = $this->_modelCliente->listaCliente(null,null,null,"nome ASC");
         $listaView['usuario'] = $this->_modelUsuario->listaUsuarios(null,null,null,"nome ASC");
 
         $this->view("index",$listaView);
@@ -65,7 +65,7 @@ Class Lista extends Controller
                 }
                 elseif($coluna == "id_cliente")
                 {
-                    $urlLogo = $this->_cliente->listaCliente(sprintf("id = '%s'",$row[$coluna]));
+                    $urlLogo = $this->_modelCliente->listaCliente(sprintf("id = '%s'",$row[$coluna]));
                     $this->_value[$cont][$coluna] =  $this->imageTabela(TEMANEON."assets/".$urlLogo[0]["urlLogo"]);
                 }
                 elseif($coluna == "id_responsavel")
@@ -167,15 +167,15 @@ Class Lista extends Controller
         
 
 
-        $this->_cliente = htmlspecialchars(trim($_POST['cliente']));
+        $this->_modelCliente = htmlspecialchars(trim($_POST['cliente']));
         $responsavel = htmlspecialchars(trim($_POST['responsavel']));
         $itemCod = $_POST['itemCodigo'];
 
 
-        if(($this->_cliente != "" ) and ($responsavel != "" ))
+        if(($this->_modelCliente != "" ) and ($responsavel != "" ))
         {
             $this->_modelLista->cadastrarLista(array(
-                "id_cliente" => sprintf("'%s'",$this->_cliente),
+                "id_cliente" => sprintf("'%s'",$this->_modelCliente),
                 "id_responsavel" => sprintf("'%s'",$responsavel),
                 "data_criado" => "now()"
             ));

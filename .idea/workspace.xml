@@ -116,8 +116,8 @@
       <file leaf-file-name="listaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3120482" vertical-offset="115" max-vertical-offset="3723">
-              <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.14819278" vertical-offset="2733" max-vertical-offset="3723">
+              <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
               </folding>
@@ -602,7 +602,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427228198779</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Merge branch 'master' of https://github.com/slinkkkk/controleDeEstoque&#10;&#10;Ageitando Cntroler&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;">
+      <created>1427228909746</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1427228909746</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1085,8 +1091,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/admin/controllers/listaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3120482" vertical-offset="115" max-vertical-offset="3723">
-          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.14819278" vertical-offset="2733" max-vertical-offset="3723">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
           </folding>
