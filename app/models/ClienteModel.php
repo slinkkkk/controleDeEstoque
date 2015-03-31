@@ -9,7 +9,7 @@ class ClienteModel extends Model{
 
     public function __construct()
     {
-        parent::__construct("clientes");
+        parent::__construct("clientes","main");
 
     }
 

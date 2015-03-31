@@ -9,7 +9,7 @@ class ListaModel extends Model{
 
     public function __construct()
     {
-        parent::__construct("lista_equipamento");
+        parent::__construct("lista_equipamento","main");
 
     }
 
